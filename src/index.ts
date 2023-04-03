@@ -1,0 +1,12 @@
+import { App } from './app';
+import { connect } from './config/database';
+
+const PORT = process.env.PORT || 3000;
+
+const app = new App().app;
+
+connect();
+
+app.listen(PORT, () => {
+console.log(`Server listening on port ${PORT}`);
+});
