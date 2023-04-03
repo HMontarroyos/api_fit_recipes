@@ -21,6 +21,6 @@ export class App {
   private routes() {
     const recipeRoutes = new RecipeRoutes();
 
-    this.app.use('/api/recipes', recipeRoutes.router);
+    this.app.use('/recipes', recipeRoutes.router);
   }
 }
