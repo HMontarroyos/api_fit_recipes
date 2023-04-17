@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import { RecipeRoutes } from './routes';
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import { RecipeRoutes, EmailRoutes } from "./routes";
 
 export class App {
   public app: express.Application;
@@ -20,7 +20,9 @@ export class App {
 
   private routes() {
     const recipeRoutes = new RecipeRoutes();
+    const emailRoutes = new EmailRoutes();
 
-    this.app.use('/recipes', recipeRoutes.router);
+    this.app.use("/recipes", recipeRoutes.router);
+    this.app.use("/email", emailRoutes.router);
   }
 }
