@@ -5,6 +5,7 @@ export interface Recipe extends Document {
   description: string;
   ingredients: string[];
   instructions: string;
+  image: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -14,6 +15,7 @@ const RecipeSchema: Schema = new Schema({
   description: { type: String, required: true },
   ingredients: [{ type: String, required: true }],
   instructions: { type: String, required: true },
+  image: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

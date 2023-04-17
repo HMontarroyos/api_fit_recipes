@@ -23,6 +23,11 @@ export class RecipesRepository {
     return savedRecipe;
   }
 
+  public async createMultipleRecipes(recipes: any): Promise<any> {
+    const newRecipes = await Recipe.insertMany(recipes);
+    return newRecipes;
+  }
+
   public async updateRecipe(id: string, updatedRecipe: any): Promise<boolean> {
     const result = await Recipe.updateOne({ _id: id }, updatedRecipe).exec();
     if (result.modifiedCount === 0) {
@@ -33,9 +38,11 @@ export class RecipesRepository {
 
   public async deleteRecipe(id: string): Promise<boolean> {
     const result = await Recipe.deleteOne({ _id: id }).exec();
-    if (result.deletedCount !== undefined && result.deletedCount > 0) {
-      throw new Error(`Recipe with ID ${id} not found`);
-    }
-    return true;
+    return result.deletedCount> 0;
+  }
+
+  public async deleteAllRecipes(): Promise<boolean> {
+    const result = await Recipe.deleteMany({}).exec();
+    return result.deletedCount > 0;
   }
 }
