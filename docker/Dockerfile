@@ -2,15 +2,16 @@ FROM node:18.15.0
 
 WORKDIR /app
 
+RUN pwd
+
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn && yarn build
-
 COPY . .
 
-RUN yarn build
+RUN yarn && yarn build
+
 
 EXPOSE 3000
 
-CMD ["node", "dist/app.js"]
+CMD ["node", "dist/server.js"]
