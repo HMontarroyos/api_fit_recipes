@@ -4,9 +4,9 @@ export interface Recipe extends Document {
   name: string;
   description?: string;
   ingredients: {
-    amount: string;
+    amount?: string;
     name: string;
-    measurement: string;
+    measurement?: string;
   }[];
   instructions: {
     step: string;
@@ -31,9 +31,9 @@ const RecipeSchema: Schema = new Schema({
   description: { type: String, required: false },
   ingredients: [
     {
-      amount: { type: String, required: true },
+      amount: { type: String, required: false },
       name: { type: String, required: true },
-      measurement: { type: String, required: true },
+      measurement: { type: String, required: false },
     },
   ],
   instructions: [
