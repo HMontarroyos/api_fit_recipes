@@ -21,9 +21,9 @@ export interface Recipe extends Document {
   difficulty: string;
   type: string;
   occasions: string;
-  specialOccasions?: string;
-  utensils?: string;
-  foodRestriction?: string;
+  specialOccasions?: string[];
+  utensils?: string[];
+  foodRestriction?: string[];
 }
 
 const RecipeSchema: Schema = new Schema({
@@ -51,9 +51,9 @@ const RecipeSchema: Schema = new Schema({
   difficulty: { type: String, required: true },
   type: { type: String, required: true },
   occasions: { type: String, required: true },
-  specialOccasions: { type: String, required: false },
-  utensils: { type: String, required: false },
-  foodRestriction: { type: String, required: false },
+  specialOccasions: { type: [String], required: false},
+  utensils: { type: [String], required: false},
+  foodRestriction:  { type: [String], required: false},
 });
 
 export default model<Recipe>("Recipe", RecipeSchema);
