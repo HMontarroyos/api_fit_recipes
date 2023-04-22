@@ -3,6 +3,7 @@ import { Document, Schema, model } from "mongoose";
 export interface Recipe extends Document {
   name: string;
   description?: string;
+  summary: string;
   ingredients: {
     amount?: string;
     name: string;
@@ -29,6 +30,7 @@ export interface Recipe extends Document {
 const RecipeSchema: Schema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: false },
+  summary: { type: String, required: true },
   ingredients: [
     {
       amount: { type: String, required: false },
