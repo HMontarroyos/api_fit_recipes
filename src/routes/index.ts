@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { RecipeController } from "../modules/Recipes/controllers";
 import { EmailController } from "../modules/Email/controllers";
+import { LoginController } from "../modules/Login/controllers";
+import AuthMiddleware from "../modules/Login/Middleware/AuthMiddleware";
 export class RecipeRoutes {
   public recipeController: RecipeController;
   public router: Router;
@@ -27,5 +29,18 @@ export class EmailRoutes {
     this.emailController = new EmailController();
     this.router.post("/", this.emailController.saveEmail);
     this.router.get("/", this.emailController.getAllEmails);
+  }
+}
+
+export class LoginRoutes {
+  public loginController: LoginController;
+  public router: Router;
+
+  constructor() {
+    this.router = Router();
+    this.loginController = new LoginController();
+    this.router.post("/register", this.loginController.createUser);
+    this.router.post("/", this.loginController.login);
+    this.router.get("/user", AuthMiddleware.authenticate, this.loginController.getUser);
   }
 }
